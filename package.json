@@ -1,0 +1,27 @@
+{
+  "name": "rinspect",
+  "preferGlobal": "false",
+  "version": "0.0.1",
+  "author": "David Rubert <david.rubert@gmail.com>",
+  "description": "Utilidad para diagnosticar o consultar el estado de las tablas de enrutado de la red guifi.net",
+  "dependencies" : {
+    "optimist"  :  "latest",
+    "mikronode"   :  "latest",
+    "netmask"   :  "latest",
+    "winston"   :  "latest",
+    "ssh2"   :  "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tombatossals/rinspect"
+  },
+  "keywords": [
+    "nodejs",
+    "guifi.net",
+    "ospf"
+  ],
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.8"
+  }
+}
