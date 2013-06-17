@@ -17,7 +17,8 @@ function find_gateway(routes, req_route) {
 function checkroutes(zone_id, local_routes) {
     zone_list_networks(zone_id, function(guifi_routes) {
         console.log("Checking...");
-        for (var i in local_routes) {
+        var i;
+        for (i in local_routes) {
             var route = local_routes[i];
             var block = new Netmask(route.dstaddress);
             var network = util.format("%s/%s", block.base, block.bitmask);
@@ -28,8 +29,9 @@ function checkroutes(zone_id, local_routes) {
                 });
             }
         }
+
         var copia_routes = local_routes.slice();
-        for (var i in local_routes) {
+        for (i in local_routes) {
             var route1 = local_routes[i];
             copia_routes.splice(local_routes.indexOf(route1), 1);
             var block1 = new Netmask(route1.dstaddress);
@@ -59,4 +61,4 @@ function diagnose(ip, username, password, zone_id, method) {
 
 }
 
-module.exports = diagnose
+module.exports = diagnose;

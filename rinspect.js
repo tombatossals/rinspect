@@ -6,7 +6,7 @@ var util = require("util"),
 
 
 function check_parameters(argv) {
-    var sections = [ "diagnose", "query-ip" ]
+    var sections = [ "diagnose", "query-ip" ];
     for (var i=0; i<argv._.length; i++) { 
         var argument = argv._[i];
         if (sections.indexOf(argument) === -1) {
