@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-var util = require("util");
-var argv = require("optimist").usage("Usage: $0 [diagnose|query-ip [ip]]").demand([ "ip" ]).check(check_parameters).default("password", "").default("username", "guest").demand(1).argv;
+var util = require("util"),
+    settings = require("./config/settings"),
+    argv = require("optimist").usage("Usage: $0 [diagnose|query-ip [ip]]").demand([ "ip" ]).check(check_parameters).default("password", "").default("username", "guest").default("zone", "País Valencià").demand(1).argv;
 
 
 function check_parameters(argv) {
@@ -15,5 +16,6 @@ function check_parameters(argv) {
     return true;
 }
 
+var zone_id = settings.zones[argv.zone];
 var f = require(util.format("./common/%s", argv._[0]));
-f(argv.ip, argv.username, argv.password);
+f(argv.ip, argv.username, argv.password, zone_id, argv.method);

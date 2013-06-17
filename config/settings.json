@@ -1,0 +1,11 @@
+{
+    "guifinet_api_host": "alzina.act.uji.es",
+    "guifinet_api_path": "/guifi/api",
+    "zones" : {
+        "País Valencià": 3674,
+        "Catalunya": 2413,
+        "Iberian Peninsula": 17711
+    },
+
+    "query_mode": "mikrotik_api"
+}

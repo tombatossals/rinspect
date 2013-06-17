@@ -6,11 +6,25 @@
   "description": "Utilidad para diagnosticar o consultar el estado de las tablas de enrutado de la red guifi.net",
   "dependencies" : {
     "optimist"  :  "latest",
-    "mikronode"   :  "latest",
+    "snmp-native"   :  "latest",
     "netmask"   :  "latest",
     "winston"   :  "latest",
     "ssh2"   :  "latest"
   },
+
+  "devDependencies": {
+    "grunt-cli": "latest",
+    "grunt": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-karma": "latest",
+    "jasmine-node": "latest",
+    "karma": "latest"
+  },
+
   "repository": {
     "type": "git",
     "url": "https://github.com/tombatossals/rinspect"
