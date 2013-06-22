@@ -9,6 +9,7 @@
     "snmp-native"   :  "latest",
     "netmask"   :  "latest",
     "winston"   :  "latest",
+    "traceroute":  "latest",
     "ssh2"   :  "latest"
   },
 

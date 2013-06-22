@@ -22,7 +22,7 @@ function zone_list_networks(zone_id, callback) {
     });
 }
 
-function node_search_by_ip(ip, network, callback) {
+function node_search_by_ip(ip, networks, callback) {
     var options = {
         host: settings.guifinet_api_host,
         path: util.format('%s?command=guifi.node.search_by_ip&ip=%s&timestamp=%s', settings.guifinet_api_path, ip, new Date().getTime() )
@@ -36,13 +36,19 @@ function node_search_by_ip(ip, network, callback) {
    
         res.on("end", function() {
             var obj = JSON.parse(output);
-            var data = {
-                name: obj.responses.rows[0].name,
-                url: obj.responses.rows[0].url,
-                network: network
+            var data;
+            if (obj.responses && obj.responses.rows) {
+                data = {
+                    name: obj.responses.rows[0].name,
+                    url: obj.responses.rows[0].url,
+                    ip: ip,
+                    networks: networks
+                };
             }
             callback(data);
         });
+    }).on("error", function(e) {
+        console.log("Error:", e);
     });
 }
 

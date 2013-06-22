@@ -6,6 +6,6 @@
         "Catalunya": 2413,
         "Iberian Peninsula": 17711
     },
-
-    "query_mode": "mikrotik_api"
+    "default_command": "diagnose",
+    "query_mode": "snmp"
 }

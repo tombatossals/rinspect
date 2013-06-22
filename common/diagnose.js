@@ -17,17 +17,30 @@ function find_gateway(routes, req_route) {
 function checkroutes(zone_id, local_routes) {
     zone_list_networks(zone_id, function(guifi_routes) {
         console.log("Checking...");
-        var i;
+        var i, bad_networks = {};
         for (i in local_routes) {
             var route = local_routes[i];
             var block = new Netmask(route.dstaddress);
             var network = util.format("%s/%s", block.base, block.bitmask);
-            if (route.distance > 0 && guifi_routes.indexOf(network) === -1) {
+            if (route.distance > 0 && route.distance < 255 && guifi_routes.indexOf(network) === -1) {
+
                 var gateway = find_gateway(local_routes, network);
-                node_search_by_ip(gateway, network, function(data) {
-                    console.log(util.format("The published OSPF network %s, coming from %s (%s) is not registered on guifi.net", data.network, data.name, data.url));
-                });
+                if (bad_networks[gateway]) {
+                    bad_networks[gateway].push(network);
+                } else {
+                    bad_networks[gateway] = [ network ];
+                }
             }
+        }
+
+        for (var g in bad_networks) {
+            node_search_by_ip(g, bad_networks[g], function(data) {
+                if (data) {
+                    for (var n in data.networks) {
+                        console.log(util.format("The published OSPF network %s, coming from %s (%s) is not registered on guifi.net", data.networks[n], data.name, data.url));
+                    }
+                }
+            });
         }
 
         var copia_routes = local_routes.slice();
@@ -51,13 +64,14 @@ function checkroutes(zone_id, local_routes) {
 
 function diagnose(ip, username, password, zone_id, method) {
 
+    var getroutes;
     if (method === undefined) {
-        var getroutes = require("./mikrotik").getroutes;
+        getroutes = require("./mikrotik").getroutes;
     } else {
-        var getroutes = require(util.format("./%s", method)).getroutes;
+        getroutes = require(util.format("./%s", method)).getroutes;
     }
 
-    getroutes("10.228.144.161", "guest", "", zone_id, checkroutes);
+    getroutes(ip, username, password, zone_id, checkroutes);
 
 }
 
