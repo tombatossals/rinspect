@@ -5,12 +5,13 @@
   "author": "David Rubert <david.rubert@gmail.com>",
   "description": "Utilidad para diagnosticar o consultar el estado de las tablas de enrutado de la red guifi.net",
   "dependencies" : {
-    "optimist"  :  "latest",
-    "snmp-native"   :  "latest",
-    "netmask"   :  "latest",
-    "winston"   :  "latest",
+    "optimist":    "latest",
+    "snmp-native": "latest",
+    "netmask":     "latest",
+    "winston":     "latest",
+    "mikronode":   "latest",
     "traceroute":  "latest",
-    "ssh2"   :  "latest"
+    "ssh2":        "latest"
   },
 
   "devDependencies": {

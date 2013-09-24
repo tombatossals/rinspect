@@ -2,7 +2,7 @@
 
 var util = require("util"),
     settings = require("./config/settings"),
-    argv = require("optimist").usage("Usage: $0 [diagnose|traceroute]").demand([ "ip" ]).check(check_parameters).default("password", "").default("username", "guest").default("zone", "País Valencià").default("method", "snmp").argv;
+    argv = require("optimist").usage("Usage: $0 [diagnose|traceroute]").demand([ "ip" ]).check(check_parameters).default("password", "").default("username", "guest").default("zone", "País Valencià").default("method", "mikrotik").argv;
 
 
 function check_parameters(argv) {
